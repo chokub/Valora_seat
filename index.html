@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valora Cafe Seat Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Staff Seat Map</p>
+          <h1>Valora Cafe</h1>
+        </div>
+        <button class="reset-button" type="button" id="resetAll">Reset all</button>
+      </header>
+
+      <section class="status-panel" aria-label="Seat status summary">
+        <div class="status-pill">
+          <span class="dot available"></span>
+          <span>Available</span>
+          <strong id="availableCount">0</strong>
+        </div>
+        <div class="status-pill">
+          <span class="dot occupied"></span>
+          <span>Occupied</span>
+          <strong id="occupiedCount">0</strong>
+        </div>
+      </section>
+
+      <section class="floor-card" aria-label="Clickable cafe floor plan">
+        <div class="floor-plan">
+          <div class="floor-label">Today seats</div>
+          <div class="vip-room"><span>VIP Room</span></div>
+
+          <div class="table table-left-pair table-14-13">
+            <span>14</span>
+            <span>13</span>
+          </div>
+          <div class="table table-left-pair table-12-11">
+            <span>12</span>
+            <span>11</span>
+          </div>
+
+          <div class="table table-bottom-long table-9-10">
+            <span>9</span>
+            <span>10</span>
+          </div>
+
+          <div class="table table-mid table-8">8</div>
+          <div class="table table-mid table-7">7</div>
+          <div class="table table-mid table-6">6</div>
+          <div class="table table-mid table-5">5</div>
+
+          <div class="table table-wide table-4">4</div>
+          <div class="table table-wide table-3">3</div>
+          <div class="table table-wide table-2">2</div>
+          <div class="table table-wide table-1">1</div>
+
+          <div class="bar-accent" aria-hidden="true"></div>
+          <div class="seats-layer" id="seatsLayer"></div>
+          <div class="divider divider-4"></div>
+          <div class="divider divider-3"></div>
+          <div class="divider divider-2"></div>
+          <div class="divider divider-1"></div>
+          <div class="counter-line line-8"></div>
+          <div class="counter-line line-7"></div>
+          <div class="counter-line line-6"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
