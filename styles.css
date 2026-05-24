@@ -128,6 +128,14 @@ h1 {
   padding: 10px;
 }
 
+.floor-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 10px;
+}
+
 .floor-plan {
   position: relative;
   width: 540px;
@@ -136,6 +144,26 @@ h1 {
   overflow: hidden;
   border-radius: 16px;
   background: var(--card-milk);
+}
+
+.floor-plan:not(.active) {
+  display: none;
+}
+
+.floor-plan.active {
+  animation: floor-arrive 360ms cubic-bezier(0.2, 0.85, 0.25, 1);
+}
+
+@keyframes floor-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .vip-room {
@@ -158,7 +186,7 @@ h1 {
 
 .floor-card-label {
   display: inline-flex;
-  margin: 0 0 10px 4px;
+  margin: 0 0 0 4px;
   padding: 6px 10px;
   border: 1px solid #eadcca;
   border-radius: 999px;
@@ -167,6 +195,43 @@ h1 {
   font-size: 0.76rem;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.floor-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #eadcca;
+  border-radius: 999px;
+  background: #fffaf4;
+}
+
+.floor-button {
+  min-width: 48px;
+  min-height: 34px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--text-light);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 900;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.floor-button:hover,
+.floor-button:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.floor-button.active {
+  color: #fff;
+  background: var(--wood-light);
+  box-shadow: 0 6px 14px rgba(176, 125, 98, 0.22);
 }
 
 .vip-room::before {
@@ -256,6 +321,67 @@ h1 {
 .table-3 { top: 307px; right: 12px; }
 .table-2 { top: 438px; right: 12px; }
 .table-1 { top: 568px; right: 12px; }
+
+.floor-plan-2 {
+  background: var(--card-milk);
+}
+
+.floor-2-table {
+  position: absolute;
+  z-index: 3;
+  right: 72px;
+  width: 90px;
+  height: 40px;
+  border-radius: 9px;
+  background: var(--wood-light);
+  box-shadow: inset 0 -4px 0 var(--wood-dark);
+}
+
+.floor-2-table-a {
+  top: 47px;
+}
+
+.floor-2-table-b {
+  top: 168px;
+}
+
+.floor-2-wall {
+  position: absolute;
+  right: -2px;
+  width: 310px;
+  border: 2px solid #77716c;
+  background: transparent;
+}
+
+.wall-upper {
+  top: 248px;
+  height: 214px;
+}
+
+.wall-lower {
+  top: 504px;
+  height: 190px;
+}
+
+.round-table {
+  position: absolute;
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #030303;
+  box-shadow: inset 0 -4px 0 rgba(255, 255, 255, 0.08);
+}
+
+.round-table-left {
+  left: 42px;
+  bottom: 78px;
+}
+
+.round-table-right {
+  left: 132px;
+  bottom: 78px;
+}
 
 .seats-layer {
   position: absolute;

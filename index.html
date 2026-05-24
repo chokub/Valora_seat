@@ -36,8 +36,15 @@
       </section>
 
       <section class="floor-card" aria-label="Clickable cafe floor plan">
-        <div class="floor-card-label">Today seats</div>
-        <div class="floor-plan">
+        <div class="floor-card-header">
+          <div class="floor-card-label" id="floorLabel">3rd floor seats</div>
+          <div class="floor-switch" aria-label="Select cafe floor">
+            <button class="floor-button" type="button" data-floor-target="2">2F</button>
+            <button class="floor-button active" type="button" data-floor-target="3">3F</button>
+          </div>
+        </div>
+
+        <div class="floor-plan floor-plan-3 active" data-floor="3">
           <div class="vip-room"><span>VIP Room</span></div>
 
           <div class="table table-left-pair table-14-13">
@@ -65,7 +72,7 @@
           <div class="table table-wide table-1">1</div>
 
           <div class="bar-accent" aria-hidden="true"></div>
-          <div class="seats-layer" id="seatsLayer"></div>
+          <div class="seats-layer" data-floor-layer="3"></div>
           <div class="divider divider-4"></div>
           <div class="divider divider-3"></div>
           <div class="divider divider-2"></div>
@@ -73,6 +80,19 @@
           <div class="counter-line line-8"></div>
           <div class="counter-line line-7"></div>
           <div class="counter-line line-6"></div>
+        </div>
+
+        <div class="floor-plan floor-plan-2" data-floor="2">
+          <div class="floor-2-table floor-2-table-a"></div>
+          <div class="floor-2-table floor-2-table-b"></div>
+
+          <div class="floor-2-wall wall-upper"></div>
+          <div class="floor-2-wall wall-lower"></div>
+
+          <div class="round-table round-table-left"></div>
+          <div class="round-table round-table-right"></div>
+
+          <div class="seats-layer" data-floor-layer="2"></div>
         </div>
       </section>
     </main>
