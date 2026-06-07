@@ -32,6 +32,18 @@ const rowSeats = (prefix, x, y, count = 3, size = seatSize, gap = rowGap) =>
   }));
 
 const floorSeatMaps = {
+  "1": [
+    { id: "counter-left", x: 82, y: 41, size: 26 },
+    { id: "counter-right", x: 172, y: 41, size: 26 },
+    ...rowSeats("top-table-1-top", 382, 5, 2, seatSize, 46),
+    ...rowSeats("top-table-1-bottom", 382, 97, 2, seatSize, 46),
+    ...rowSeats("top-table-2-top", 382, 134, 2, seatSize, 46),
+    ...rowSeats("top-table-2-bottom", 382, 218, 2, seatSize, 46),
+    { id: "round-top", x: 406, y: 478, size: seatSize },
+    { id: "round-right", x: 453, y: 531, size: seatSize },
+    { id: "round-bottom", x: 406, y: 584, size: seatSize },
+    { id: "round-left", x: 359, y: 531, size: seatSize },
+  ],
   "3": [
     ...verticalSeats("14-13-left", 38, 10, 6),
     ...verticalSeats("14-13-right", 170, 10, 6),
@@ -50,14 +62,14 @@ const floorSeatMaps = {
     ...rowSeats("1-bottom", 420, 621),
   ],
   "2": [
-    ...rowSeats("top-table-1-top", 382, 19, 2, seatSize, 46),
-    ...rowSeats("top-table-1-bottom", 382, 89, 2, seatSize, 46),
-    ...rowSeats("top-table-2-top", 382, 142, 2, seatSize, 46),
-    ...rowSeats("top-table-2-bottom", 382, 210, 2, seatSize, 46),
-    { id: "round-left-top", x: 54, y: 512, size: 24 },
-    { id: "round-left-bottom", x: 54, y: 610, size: 24 },
-    { id: "round-right-top", x: 146, y: 512, size: 24 },
-    { id: "round-right-bottom", x: 146, y: 610, size: 24 },
+    ...rowSeats("top-table-1-top", 382, 5, 2, seatSize, 46),
+    ...rowSeats("top-table-1-bottom", 382, 97, 2, seatSize, 46),
+    ...rowSeats("top-table-2-top", 382, 134, 2, seatSize, 46),
+    ...rowSeats("top-table-2-bottom", 382, 218, 2, seatSize, 46),
+    { id: "round-left-top", x: 49, y: 505, size: seatSize },
+    { id: "round-left-bottom", x: 49, y: 607, size: seatSize },
+    { id: "round-right-top", x: 139, y: 505, size: seatSize },
+    { id: "round-right-bottom", x: 139, y: 607, size: seatSize },
   ],
 };
 
@@ -66,6 +78,7 @@ if (!floorSeatMaps[activeFloor]) {
 }
 
 const floorNames = {
+  "1": "1st floor seats",
   "2": "2nd floor seats",
   "3": "3rd floor seats",
 };
@@ -101,7 +114,11 @@ const updateCounts = () => {
 const setSeatStatus = (seat, occupied) => {
   seat.classList.toggle("occupied-state", occupied);
   seat.setAttribute("aria-pressed", String(occupied));
-  seat.setAttribute("aria-label", `${seat.dataset.seat}, ${occupied ? "occupied" : "available"}`);
+  const seatNumber = seat.dataset.seatNumber;
+  seat.setAttribute(
+    "aria-label",
+    `Seat ${seatNumber}, ${occupied ? "occupied" : "available"}`
+  );
 };
 
 const setActiveFloor = (floor) => {
@@ -123,21 +140,39 @@ const setActiveFloor = (floor) => {
 };
 
 const savedState = readSavedState();
+const floorOrder = ["1", "2", "3"];
+let seatNumber = 1;
 
-Object.entries(floorSeatMaps).forEach(([floor, seats]) => {
+floorOrder.forEach((floor) => {
   const seatsLayer = document.querySelector(`[data-floor-layer="${floor}"]`);
+  const seats = floorSeatMaps[floor];
+
+  if (!seatsLayer || !seats) {
+    return;
+  }
 
   seats.forEach(({ id, x, y, size }) => {
     const seat = document.createElement("button");
     const seatId = `floor-${floor}-${id}`;
+    const label = document.createElement("span");
+    const currentNumber = seatNumber;
+
     seat.className = "seat";
+    if (size < 30) {
+      seat.classList.add("seat--compact");
+    }
     seat.type = "button";
     seat.dataset.floor = floor;
     seat.dataset.seat = seatId;
+    seat.dataset.seatNumber = String(currentNumber);
     seat.style.left = `${x}px`;
     seat.style.top = `${y}px`;
     seat.style.width = `${size}px`;
     seat.style.height = `${size}px`;
+
+    label.className = "seat-number";
+    label.textContent = currentNumber;
+    seat.append(label);
 
     setSeatStatus(seat, Boolean(savedState[seatId]));
 
@@ -148,6 +183,7 @@ Object.entries(floorSeatMaps).forEach(([floor, seats]) => {
     });
 
     seatsLayer.append(seat);
+    seatNumber += 1;
   });
 });
 

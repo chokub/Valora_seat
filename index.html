@@ -39,6 +39,7 @@
         <div class="floor-card-header">
           <div class="floor-card-label" id="floorLabel">3rd floor seats</div>
           <div class="floor-switch" aria-label="Select cafe floor">
+            <button class="floor-button" type="button" data-floor-target="1">1F</button>
             <button class="floor-button" type="button" data-floor-target="2">2F</button>
             <button class="floor-button active" type="button" data-floor-target="3">3F</button>
           </div>
@@ -80,6 +81,40 @@
           <div class="counter-line line-8"></div>
           <div class="counter-line line-7"></div>
           <div class="counter-line line-6"></div>
+        </div>
+
+        <div class="floor-plan floor-plan-1" data-floor="1">
+          <div class="floor-1-counter" aria-hidden="true"></div>
+          <div class="floor-1-bar-station" aria-hidden="true"></div>
+
+          <div class="floor-1-table floor-1-table-a"></div>
+          <div class="floor-1-table floor-1-table-b"></div>
+
+          <div class="floor-1-bottom-wall" aria-hidden="true"></div>
+          <div class="floor-1-wall" aria-hidden="true"></div>
+          <div class="floor-1-door" aria-hidden="true">
+            <svg viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 58H106" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" />
+              <path d="M14 58V18" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" />
+              <path d="M106 58V18" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" />
+              <path
+                d="M14 18A46 46 0 0 1 60 58"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M106 18A46 46 0 0 0 60 58"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+
+          <div class="round-table floor-1-round-table" aria-hidden="true"></div>
+
+          <div class="seats-layer" data-floor-layer="1"></div>
         </div>
 
         <div class="floor-plan floor-plan-2" data-floor="2">
