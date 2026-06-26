@@ -1,36 +1,16 @@
-# Valora Cafe Seat Map — Deploy instructions
+# React + Vite
 
-สรุป: เว็บนี้เป็น static site (ไฟล์: `index.html`, `script.js`, `styles.css`) — เหมาะสำหรับโฮสต์บน GitHub Pages, Netlify หรือ Vercel. ต่อไปนี้วิธีการที่แนะนำสำหรับ POS ที่มีอินเทอร์เน็ต.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-ตัวเลือก A — GitHub Pages (แนะนำ)
-- สร้าง repository ใหม่บน GitHub และ push โค้ดนี้ขึ้น `main` (หรือ `master`).
-- Workflow ที่เพิ่มไว้จะ deploy อัตโนมัติเมื่อคุณ push ขึ้น `main`/`master`.
+Currently, two official plugins are available:
 
-ตัวอย่างคำสั่ง (จากโฟลเดอร์โปรเจค):
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin <YOUR_GITHUB_REPO_URL>
-git push -u origin main
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-หลัง push แล้ว: ไปที่ GitHub repo → Settings → Pages (หรือ Pages ใน sidebar) เพื่อยืนยันว่า Pages เปิดอยู่ (โดยปกติ workflow จะจัดการให้). รอไม่กี่นาทีแล้วเข้าที่ `https://<your-username>.github.io/<repo-name>/` เพื่อทดสอบ.
+## React Compiler
 
-ตัวเลือก B — Netlify (ง่ายสำหรับ drag-and-drop)
-- เข้า https://app.netlify.com/sites
-- ลากโฟลเดอร์โปรเจคทั้งโฟลเดอร์ (มี `index.html`) ไปวางใน Netlify (Drag & Drop deploy)
-- หรือเชื่อม Git repo กับ Netlify เพื่อ deploy อัตโนมัติเมื่อ push
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-ตัวเลือก C — Vercel (คล้าย Netlify)
+## Expanding the Oxlint configuration
 
-Kiosk / POS notes:
-- ถ้า POS จะเปิดในโหมด Kiosk: ตั้งเบราว์เซอร์ให้เปิด URL ของ site แบบเต็มหน้าจอ.
-- ถ้าต้องการทำงานแบบ offline: แจ้งผม ผมจะเพิ่ม PWA service worker เพื่อ cache ไฟล์.
-
-ถ้าคุณต้องการ ผมจะ:
-- ช่วยสร้าง GitHub repo และ push ให้ (ต้องให้ผมสิทธิหรือตั้งค่า token) — หรือ
-- ให้คำสั่งที่ต้องรันบนเครื่องของคุณทีละขั้นตอน และยืนยันเมื่อ deploy เสร็จ.
-
-แจ้งผมว่าต้องการแบบไหน (GitHub Pages / Netlify / Vercel / แค่ ZIP) ผมจะดำเนินการต่อ.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
