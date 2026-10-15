@@ -1,16 +1,32 @@
-# React + Vite
+# Varola Cafe – Table Management Dashboard ☕
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+ระบบจัดการโต๊ะอาหารสำหรับคาเฟ่และร้านอาหาร (Table Management System Dashboard) พัฒนาด้วย **React 18 + Vite** สไตล์ Dark Mode ทันสมัย ดีไซน์เฉพาะสำหรับ iPad / Tablet
 
-Currently, two official plugins are available:
+## 🛠 เทคโนโลยีที่ใช้ (Tech Stack)
+- **Framework**: [React 18](https://react.dev/) (Component-Driven Architecture, Hooks)
+- **Build Tool**: [Vite 6](https://vitejs.dev/) (Fast HMR & Bundler)
+- **Typography**: Google Fonts (Prompt, Plus Jakarta Sans, JetBrains Mono)
+- **Styling**: Vanilla CSS Design System with CSS Custom Properties
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 วิธีการติดตั้งและรันโปรเจกต์ (Getting Started)
 
-## React Compiler
+1. ติดตั้ง Dependencies:
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. รันโหมด Development (เปิดเซิร์ฟเวอร์ในเครื่อง):
+```bash
+npm run dev
+```
 
-## Expanding the Oxlint configuration
+3. บิลด์สำหรับ Production:
+```bash
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## ✨ ฟีเจอร์หลัก
+- **Top Header**: แสดงเวลานาฬิกาดิจิทัลเรียลไทม์ภาษาไทย พร้อมสถิติสรุปจำนวนโต๊ะว่าง, มีลูกค้า, และกำลังทำความสะอาด
+- **Floor Navigation**: สลับชั้นระหว่าง ชั้น 1 (ห้องโถงหลัก), ชั้น 2 (ชั้นลอย & ระเบียง), และ ชั้น 3 (ห้อง VIP)
+- **Interactive Top-Down Floor Plan**: ผังโต๊ะมุมมองด้านบน มีปุ่มโต๊ะทรงกลมและแคปซูล พร้อมสัญลักษณ์พื้นที่ร้าน
+- **1-Tap Modal Control**: แตะที่โต๊ะเพื่อเปลี่ยนสถานะ (ว่าง / มีลูกค้า / ทำความสะอาด) ปรับจำนวนลูกค้า และบันทึกหมายเหตุ
