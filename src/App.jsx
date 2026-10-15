@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Header from './components/Header';
 import FloorTabs from './components/FloorTabs';
 import FloorPlan from './components/FloorPlan';
@@ -6,14 +6,55 @@ import TableModal from './components/TableModal';
 import Toast from './components/Toast';
 import { initialFloor1Seats, initialFloor2Seats, initialFloor3Seats, initialTables } from './data/initialTables';
 
+// Helper to safely load state from localStorage
+const loadStorage = (key, fallback) => {
+  try {
+    const saved = localStorage.getItem(key);
+    if (saved) return JSON.parse(saved);
+  } catch (e) {
+    console.error(`Failed to load ${key} from localStorage:`, e);
+  }
+  return fallback;
+};
+
+// Helper to safely save state to localStorage
+const saveStorage = (key, data) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch (e) {
+    console.error(`Failed to save ${key} to localStorage:`, e);
+  }
+};
+
 export default function App() {
-  const [floor1Seats, setFloor1Seats] = useState(initialFloor1Seats);
-  const [floor2Seats, setFloor2Seats] = useState(initialFloor2Seats);
-  const [floor3Seats, setFloor3Seats] = useState(initialFloor3Seats);
-  const [tables, setTables] = useState(initialTables);
-  const [activeFloor, setActiveFloor] = useState(1);
+  const [floor1Seats, setFloor1Seats] = useState(() => loadStorage('valora_floor1_seats', initialFloor1Seats));
+  const [floor2Seats, setFloor2Seats] = useState(() => loadStorage('valora_floor2_seats', initialFloor2Seats));
+  const [floor3Seats, setFloor3Seats] = useState(() => loadStorage('valora_floor3_seats', initialFloor3Seats));
+  const [tables, setTables] = useState(() => loadStorage('valora_tables', initialTables));
+  const [activeFloor, setActiveFloor] = useState(() => loadStorage('valora_active_floor', 1));
   const [modalTarget, setModalTarget] = useState(null);
   const [toast, setToast] = useState({ message: '', visible: false });
+
+  // Auto-sync state to localStorage whenever seats or floor change
+  useEffect(() => {
+    saveStorage('valora_floor1_seats', floor1Seats);
+  }, [floor1Seats]);
+
+  useEffect(() => {
+    saveStorage('valora_floor2_seats', floor2Seats);
+  }, [floor2Seats]);
+
+  useEffect(() => {
+    saveStorage('valora_floor3_seats', floor3Seats);
+  }, [floor3Seats]);
+
+  useEffect(() => {
+    saveStorage('valora_tables', tables);
+  }, [tables]);
+
+  useEffect(() => {
+    saveStorage('valora_active_floor', activeFloor);
+  }, [activeFloor]);
 
   // Calculate Summary Counts depending on current view/total
   const {
